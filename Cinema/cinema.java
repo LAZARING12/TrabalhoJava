@@ -1,6 +1,10 @@
 import java.util.Scanner;
 
 public class cinema {
+
+    public static void printMenu(String[] options){
+        
+    }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
