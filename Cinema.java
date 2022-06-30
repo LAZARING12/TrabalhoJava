@@ -2,14 +2,13 @@ import java.util.Scanner;
 
 public class Cinema {
 
-    //Função de limpar terminal
+    // Função de limpar terminal
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    
-    //Função que imprimi o menu
+    // Função que imprimi o menu
     public static void printMenu(String[] opções) {
 
         for (int i = 0; i < opções.length; i++) {
@@ -18,8 +17,7 @@ public class Cinema {
         System.out.print("Escolha uma opção: ");
     }
 
-
-    //Menu Principal
+    // Menu Principal
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int opção = 1;
@@ -50,11 +48,15 @@ public class Cinema {
         in.close();
     }
 
-
     // Menu de Reserva
     public static void opção1() {
         Scanner in = new Scanner(System.in);
         int opcaoReserva = 1;
+        int poltronas[][] = new int[9][9];
+        int poltrona = 1;
+        int cadeiradesej;
+        int cadeirasescolhidas[] = new int [81];
+        
         while (opcaoReserva != 4) {
             clearScreen();
             System.out.println("-----Reserva-----");
@@ -63,25 +65,66 @@ public class Cinema {
             System.out.println("3 - Cancelar");
             System.out.println("4 - Sair");
             opcaoReserva = in.nextInt();
-        }
 
-        switch (opcaoReserva) {
-            case 1:
-                opção1();
-                break;
-            case 2:
-                opção2();
-                break;
-            case 3:
-                opção3();
-                break;
-            case 4:
-                System.out.println("Saindo...");
-                break;
+            switch (opcaoReserva) {
+                case 1:
+                    clearScreen();
+                    System.out.println("[                 " + "TELA" + "                ]");
+                    for (int l = 0; l < 9; l++) {
+                        for (int c = 0; c < 9; c++) {
+                            poltronas[l][c] = poltrona;
+                            poltrona++;
+                            System.out.printf("[%02d] ", poltronas[l][c]);
+                        }
+                        System.out.println();
+
+                    }
+                    System.out.println();
+                    System.out.println();
+                    poltrona = 1;
+                    break;
+                case 2:
+                    clearScreen();
+                    System.out.println("[                 " + "TELA" + "                ]");
+                    for (int l = 0; l < 9; l++) {
+                        for (int c = 0; c < 9; c++) {
+                            poltronas[l][c] = poltrona;
+                            poltrona++;
+                            System.out.printf("[%02d] ", poltronas[l][c]);
+                        }
+                        System.out.println();
+
+                    }
+                    poltrona = 1;
+                    System.out.println("diga-nos qual cadeira deseja selecionar:");
+                    cadeiradesej = in.nextInt();
+                    for (int l = 0; l < 9; l++) {
+                        for (int c = 0; c < 9; c++) {
+                            poltronas[l][c] = poltrona;
+                           
+                            if (poltrona == cadeiradesej) {
+                                System.out.print( "[XX] ");
+                            } else {
+                                System.out.printf("[%02d] ", poltronas[l][c]);
+                            }
+                            poltrona++;
+                        }
+                        System.out.println();
+                    }
+                    poltrona =1;
+                    int a = in.nextInt();
+                    break;
+                case 3:
+                    System.out.println();
+                    ;
+                    break;
+                case 4:
+                    System.out.println("Saindo...");
+                    break;
+            }
         }
         in.close();
     }
-
 
     // Menu de Compra
     public static void opção2() {
@@ -113,7 +156,6 @@ public class Cinema {
         }
         in.close();
     }
-
 
     // Menu de Relatório
     public static void opção3() {
